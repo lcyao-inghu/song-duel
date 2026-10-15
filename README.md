@@ -5,7 +5,8 @@
 ## 資料與玩法
 
 - iTunes 台灣商店：歌手搜尋 `search?entity=musicArtist`，歌曲取得 `lookup?id=歌手ID&entity=song&limit=200`。
-- 使用 Apple 官方文件提供的 JSONP 跨來源呼叫。僅載入 `https://itunes.apple.com`，不使用封面或試聽。
+- 使用 Apple 官方文件提供的 JSONP 跨來源呼叫。從 `https://itunes.apple.com` 取得歌曲資料；對戰卡片顯示 API 回傳的專輯封面與專輯名稱，封面僅接受 HTTPS 的 `mzstatic.com` 來源，不使用試聽。
+- 封面旁附 Apple 官方 iTunes Store 徽章，封面與徽章皆連向該首歌曲的商店頁面（`app=itunes`）。徽章以官方提供的原始 SVG 內嵌，不修改圖樣。封面以原圖完整比例顯示；缺圖或載入失敗時提供明確佔位，不影響選歌或返回上一題。示範歌曲不冒用真實封面。結果下載圖仍僅含文字與連線。
 - 核對 artistId，無論版本設定，皆排除名稱或專輯名稱標示 Instrument／Instrumental、Karaoke、伴奏、純音樂等歌曲。預設只收錄標準版；勾選「題庫包含標準版以外的其他版本」後，可收錄 Live、日文版、Remix、重製等版本。同一版本仍去重，不同版本可分別參賽。切換設定使用當次原始資料重新篩選，不重送 API 請求，可用數量及模式隨之更新。最多請求 200 筆，來源未標示的純音樂與版本無法單靠文字資料辨識。
 - 搜尋延遲 600ms，處理中文輸入法，忽略過期搜尋及歌手回應。相同搜尋與成功歌曲結果在當次頁面中快取。
 - 8／16 首預覽、換歌、固定分支淘汰賽、冠軍晉級與全部對戰紀錄。
@@ -16,6 +17,10 @@
 - 最近歌手最多 5 位；儲存受限不影響比賽。示範模式含 20 首標準版、3 首其他版本與 1 首永遠排除的純樂器版，均為明確標示的虛構歌曲。
 
 官方 API 文件：https://performance-partners.apple.com/search-api
+
+封面使用條件：https://performance-partners.apple.com/search-api （Legal）
+
+官方徽章規範與原始檔：https://marketing.services.apple/itunes-identity-guidelines
 
 ## GitHub Pages
 
